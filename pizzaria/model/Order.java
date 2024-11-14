@@ -3,12 +3,14 @@ package pizzaria.model;
 import java.util.ArrayList;
 
 public class Order {
-    private final ArrayList<OrderItem<Pizza>> pizzas;
+    private final int id;
+    private final ArrayList<OrderItem> pizzas;
     private Customer customer;
     private Double discount;
     private Address delivery;
 
     public Order(Customer customer, Double discount, Address delivery) {
+        this.id = 1;
         this.pizzas = new ArrayList();
         this.customer = customer;
         this.discount = discount;
@@ -49,7 +51,7 @@ public class Order {
     
     public Double getPrice() {
         Double price = 0.0;
-        for(final OrderItem<Pizza> item : this.pizzas)
+        for(final OrderItem item : this.pizzas)
             price += item.getPizza().getPrice() * item.getQuantity();
         
         return price - (price * (discount / 100));

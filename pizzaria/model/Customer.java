@@ -1,11 +1,13 @@
 package pizzaria.model;
 
 public class Customer {
+    private final int id;
     private String name;
     private int age;
     private Address address;
 
     public Customer(String name, int age, Address address) {
+        this.id = 1;
         this.name = name;
         this.age = age;
         this.address = address;

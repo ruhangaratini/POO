@@ -20,4 +20,13 @@ public class DAO<T> {
     public boolean exists(T item) {
         return this.data.contains(item);
     }
+    
+    public T[] getAll() {
+        return this.data.toArray();
+    }
+    
+    public int generateID() {
+        return this.data.size() + 1;
+    }
+    
 }

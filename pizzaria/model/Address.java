@@ -1,6 +1,7 @@
 package pizzaria.model;
 
 public class Address {
+    private final int id;
     private String cep;
     private String city;
     private String state;
@@ -9,6 +10,7 @@ public class Address {
     private String number;
 
     public Address(String cep, String city, String state, String street, String neighborhood, String number) {
+        this.id = 1;
         this.cep = cep;
         this.city = city;
         this.state = state;
