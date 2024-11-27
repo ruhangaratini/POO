@@ -10,7 +10,7 @@ public class PizzaMarguerita extends Pizza {
 
     @Override
     public String toString() {
-        return "Pizza Marguerita - " + this.getSize().toString();
+        return this.getID() + " Pizza Marguerita - R$" + this.getPrice() + " - " + this.getSize().toString();
     }
 
     public static PizzaMarguerita fromUserInput() {
@@ -19,7 +19,7 @@ public class PizzaMarguerita extends Pizza {
         System.out.println("Preco: ");
         final Double price = scanner.nextDouble();
 
-        System.out.println("Tamanho [P, M, G]: ");
+        System.out.println("Tamanho [P, M, G] (tamanho padrao - M): ");
         final String inputSize = scanner.next();
 
         return new PizzaMarguerita(price, switch (inputSize.toUpperCase()) {

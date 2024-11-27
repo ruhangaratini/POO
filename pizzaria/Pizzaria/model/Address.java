@@ -1,30 +1,36 @@
 package Pizzaria.model;
 
+import java.util.Scanner;
+
 public class Address {
-    private final int id;
-    private String cep;
     private String city;
-    private String state;
     private String street;
     private String neighborhood;
     private String number;
 
-    public Address(String cep, String city, String state, String street, String neighborhood, String number) {
-        this.id = 1;
-        this.cep = cep;
+    public Address(String city, String street, String neighborhood, String number) {
         this.city = city;
-        this.state = state;
         this.street = street;
         this.neighborhood = neighborhood;
         this.number = number;
     }
 
-    public String getCep() {
-        return cep;
-    }
+    public static Address fromUserInput() {
+        Scanner scanner = new Scanner(System.in);
 
-    public void setCep(String cep) {
-        this.cep = cep;
+        System.out.println("Cidade: ");
+        final String city = scanner.next();
+
+        System.out.println("Rua: ");
+        final String street = scanner.next();
+
+        System.out.println("Bairro: ");
+        final String neighborhood = scanner.next();
+
+        System.out.println("Numero: ");
+        final String number = scanner.next();
+
+        return new Address(city, street, neighborhood, number);
     }
 
     public String getCity() {
@@ -33,14 +39,6 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 
     public String getStreet() {
@@ -69,7 +67,7 @@ public class Address {
     
     @Override
     public String toString() {
-        return String.format("Estado: %s\nCidade: %s\nBairro: %s\nRua: %s\nNumero: %s\nCEP: %s", 
-            this.state, this.city, this.neighborhood, this.street, this.number, this.cep);
+        return String.format("Cidade: %s\nBairro: %s\nRua: %s\nNumero: %s",
+            this.city, this.neighborhood, this.street, this.number);
     }
 }

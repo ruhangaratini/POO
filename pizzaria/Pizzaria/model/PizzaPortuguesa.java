@@ -10,7 +10,7 @@ public class PizzaPortuguesa extends Pizza {
 
     @Override
     public String toString() {
-        return "Pizza Portuguesa - " + this.getSize().toString();
+        return this.getID() + " Pizza Portuguesa - R$" + this.getPrice() + " - " + this.getSize().toString();
     }
 
     public static PizzaPortuguesa fromUserInput() {

@@ -1,16 +1,13 @@
 package Pizzaria.model;
 
-public class OrderItem {
+public class OrderItem implements Entity {
+    private int id;
     private Pizza pizza;
     private int quantity;
-    private boolean border;
-    private String observation;
 
-    public OrderItem(Pizza pizza, int quantity, boolean border, String observation) {
+    public OrderItem(Pizza pizza, int quantity) {
         this.pizza = pizza;
         this.quantity = quantity;
-        this.border = border;
-        this.observation = observation;
     }
 
     public Pizza getPizza() {
@@ -29,16 +26,13 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public boolean hasBorder() {
-        return border;
+    @Override
+    public int getID() {
+        return this.id;
     }
 
-    public void setBorder(boolean border) {
-        this.border = border;
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
-
-    public String getObservation() { return this.observation; }
-
-    public void setObservation(String observation) { this.observation = observation; }
-
 }

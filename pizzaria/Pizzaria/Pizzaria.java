@@ -7,7 +7,9 @@ import Pizzaria.model.WorkDay;
 import Pizzaria.repository.PizzaRepository;
 
 import static Pizzaria.utils.InterfaceUtils.clear;
+import static Pizzaria.view.OrderMenuView.orderMenu;
 import static Pizzaria.view.PizzaMenuView.pizzaMenu;
+import static Pizzaria.view.ReportMenuView.reportMenu;
 
 public class Pizzaria {
     
@@ -35,7 +37,7 @@ public class Pizzaria {
                     pizzaMenu();
                     break;
                 case "2":
-                    orderMenu();
+                    orderMenu(workdays.getLast());
                     break;
                 case "3":
                     reportMenu();
@@ -48,15 +50,6 @@ public class Pizzaria {
             if(!input.equals("5"))
                 clear();
         }
-    }
-
-
-    private static void orderMenu() {
-
-    }
-
-    private static void reportMenu() {
-
     }
     
 }

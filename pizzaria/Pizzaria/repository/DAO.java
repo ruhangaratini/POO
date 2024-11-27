@@ -12,6 +12,8 @@ public class DAO<T extends Entity> {
     }
     
     public void add(T item) {
+        if(item.getID() == 0)
+            item.setID(this.generateID());
         this.data.add(item);
     }
     

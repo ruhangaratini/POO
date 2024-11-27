@@ -22,7 +22,7 @@ public abstract class Pizza implements Entity {
     public int getID() { return this.id; }
 
     @Override
-    public void setID(DAO repository) { this.id = repository.generateID(); }
+    public void setID(int id) { this.id = id; }
 
     public String getFlavor() {
         return flavor;

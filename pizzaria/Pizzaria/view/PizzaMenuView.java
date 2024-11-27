@@ -1,9 +1,6 @@
 package Pizzaria.view;
 
-import Pizzaria.model.Pizza;
-import Pizzaria.model.PizzaCalabresa;
-import Pizzaria.model.PizzaMarguerita;
-import Pizzaria.model.PizzaPortuguesa;
+import Pizzaria.model.*;
 import Pizzaria.repository.PizzaRepository;
 
 import java.util.Scanner;
@@ -39,11 +36,13 @@ public class PizzaMenuView {
                     searchPizza(repository);
                     break;
                 case "3":
+                    updatePizza(repository);
                     break;
                 case "4":
                     listAll(repository.getAll());
                     break;
                 case "5":
+                    removePizza(repository);
                     break;
             }
         }
@@ -71,9 +70,8 @@ public class PizzaMenuView {
 
     private static void searchPizza(PizzaRepository repository) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("ID: ");
+        System.out.print("ID: ");
         final int id = scanner.nextInt();
-        System.out.println(id);
         final Pizza pizza = repository.getByID(id);
 
         if(pizza != null)
@@ -82,8 +80,48 @@ public class PizzaMenuView {
             System.out.println("Pizza nao encontrada!");
     }
 
-    private static void listAll(Object[] array) {
-        for(int i = 0; i < array.length; i++)
-            System.out.println((i + 1) + " - " + array[i]);
+    private static void updatePizza(PizzaRepository repository) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("ID: ");
+        final int id = scanner.nextInt();
+
+        final Pizza pizza = repository.getByID(id);
+
+        if(pizza == null) {
+            System.out.println("Pizza nao encontrada!");
+            return;
+        }
+
+        System.out.println(pizza);
+        System.out.print("\nNovo preco: ");
+        pizza.setPrice(scanner.nextDouble());
+
+        System.out.print("\nNovo tamanho [P, M, G] (tamanho padrao - M): ");
+        pizza.setSize(switch (scanner.next().toUpperCase()) {
+            case "P" -> PizzaSize.SMALL;
+            case "G" -> PizzaSize.BIG;
+            default -> PizzaSize.MEDIUM;
+        });
+
+        System.out.println("\n\n" + pizza);
+    }
+
+    private static void removePizza(PizzaRepository repository) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("ID: ");
+        final Pizza pizza = repository.getByID(scanner.nextInt());
+
+        if(pizza == null) {
+            System.out.println("Pizza nao encontrada!");
+            return;
+        }
+
+        repository.remove(pizza);
+        System.out.println("Pizza removida com sucesso");
+    }
+
+    private static void listAll(Object[] items) {
+        for(final Object item : items)
+            System.out.println(item);
     }
 }
