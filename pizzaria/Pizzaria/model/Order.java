@@ -50,12 +50,13 @@ public class Order extends DAO<OrderItem> implements Entity {
         StringBuilder text = new StringBuilder();
         text.append(this.id).append("\n");
         text.append("Cliente: ").append(this.customer.getName());
+        text.append("Entrega: ").append(this.delivery.toString()).append("\n");
 
         for(final OrderItem item : this.getAll())
             text.append(item.toString()).append("\n");
 
         text.append("Desconto: ").append(this.discount).append("%\n");
-        text.append("Valor total: R$").append(this.getPrice()).append("\n\n");
+        text.append("Valor total: R$").append(String.format("%.2f", this.getPrice())).append("\n\n");
 
         return text.toString();
     }

@@ -67,7 +67,7 @@ public class Address {
     
     @Override
     public String toString() {
-        return String.format("Cidade: %s\nBairro: %s\nRua: %s\nNumero: %s",
+        return String.format("Cidade: %s - Bairro: %s - Rua: %s - Numero: %s",
             this.city, this.neighborhood, this.street, this.number);
     }
 }

@@ -2,17 +2,15 @@ package Pizzaria.model;
 
 import Pizzaria.repository.DAO;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class WorkDay extends DAO<Order> {
-    final private LocalDate date;
+    private final int day;
+    private static int lastDay = 0;
 
     public WorkDay() {
-        this.date = LocalDate.now();
+        this.day = ++lastDay;
     }
 
-    public String getDate() {
-        return date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    public int getDay() {
+        return this.day;
     }
 }
