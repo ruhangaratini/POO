@@ -3,6 +3,7 @@ package Pizzaria.view;
 import Pizzaria.model.*;
 import Pizzaria.repository.PizzaRepository;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Pizzaria.utils.InterfaceUtils.clear;
@@ -120,8 +121,8 @@ public class PizzaMenuView {
         System.out.println("Pizza removida com sucesso");
     }
 
-    private static void listAll(Object[] items) {
-        for(final Object item : items)
+    private static void listAll(ArrayList<Pizza> items) {
+        for(final Pizza item : items)
             System.out.println(item);
     }
 }

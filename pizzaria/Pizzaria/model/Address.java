@@ -18,16 +18,16 @@ public class Address {
     public static Address fromUserInput() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Cidade: ");
+        System.out.print("Cidade: ");
         final String city = scanner.next();
 
-        System.out.println("Rua: ");
+        System.out.print("Rua: ");
         final String street = scanner.next();
 
-        System.out.println("Bairro: ");
+        System.out.print("Bairro: ");
         final String neighborhood = scanner.next();
 
-        System.out.println("Numero: ");
+        System.out.print("Numero: ");
         final String number = scanner.next();
 
         return new Address(city, street, neighborhood, number);

@@ -1,10 +1,8 @@
 package Pizzaria;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import Pizzaria.model.WorkDay;
-import Pizzaria.repository.PizzaRepository;
 
 import static Pizzaria.utils.InterfaceUtils.clear;
 import static Pizzaria.view.OrderMenuView.orderMenu;
@@ -14,7 +12,7 @@ import static Pizzaria.view.ReportMenuView.reportMenu;
 public class Pizzaria {
     
     public static void main(String[] args) {
-        final List<WorkDay> workdays = new ArrayList<WorkDay>();
+        final ArrayList<WorkDay> workdays = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         String input = "";
 
@@ -40,7 +38,7 @@ public class Pizzaria {
                     orderMenu(workdays.getLast());
                     break;
                 case "3":
-                    reportMenu();
+                    reportMenu(workdays);
                     break;
                 case "4":
                     workdays.add(new WorkDay());

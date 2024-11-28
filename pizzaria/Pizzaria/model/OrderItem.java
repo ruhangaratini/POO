@@ -27,6 +27,12 @@ public class OrderItem implements Entity {
     }
 
     @Override
+    public String toString() {
+        return this.pizza.toString() + " QTD: " + this.quantity;
+
+    }
+
+    @Override
     public int getID() {
         return this.id;
     }

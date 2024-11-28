@@ -1,21 +1,16 @@
 package Pizzaria.model;
 
-import java.util.ArrayList;
+import Pizzaria.repository.DAO;
 
-public class Order {
-    private final ArrayList<OrderItem> pizzas;
+public class Order extends DAO<OrderItem> implements Entity {
+    int id;
     private Customer customer;
     private Double discount;
     private Address delivery;
 
     public Order(Customer customer, Address delivery) {
-        this.pizzas = new ArrayList<OrderItem>();
         this.customer = customer;
         this.delivery = delivery;
-    }
-    
-    public void addItem(OrderItem orderItem) {
-        this.pizzas.add(orderItem);
     }
 
     public Customer getCustomer() {
@@ -42,12 +37,36 @@ public class Order {
         this.delivery = delivery;
     }
     
-    public Double getPrice() {
-        Double price = 0.0;
-        for(final OrderItem item : this.pizzas)
+    public double getPrice() {
+        double price = 0.0;
+        for(final OrderItem item : this.getAll())
             price += item.getPizza().getPrice() * item.getQuantity();
         
         return price - (price * (discount / 100));
     }
-    
+
+    @Override
+    public String toString() {
+        StringBuilder text = new StringBuilder();
+        text.append(this.id).append("\n");
+        text.append("Cliente: ").append(this.customer.getName());
+
+        for(final OrderItem item : this.getAll())
+            text.append(item.toString()).append("\n");
+
+        text.append("Desconto: ").append(this.discount).append("%\n");
+        text.append("Valor total: R$").append(this.getPrice()).append("\n\n");
+
+        return text.toString();
+    }
+
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+        this.id = id;
+    }
 }

@@ -3,6 +3,7 @@ package Pizzaria.view;
 import Pizzaria.model.*;
 import Pizzaria.repository.PizzaRepository;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import static Pizzaria.utils.InterfaceUtils.clear;
@@ -32,12 +33,16 @@ public class OrderMenuView {
                     addOrder(workDay);
                     break;
                 case "2":
+                    searchOrder(workDay);
                     break;
                 case "3":
+                    updateOrder(workDay);
                     break;
                 case "4":
+                    listAll(workDay.getAll());
                     break;
                 case "5":
+                    removeOrder(workDay);
                     break;
             }
         }
@@ -45,6 +50,7 @@ public class OrderMenuView {
 
     private static void addOrder(WorkDay workDay) {
         Scanner scanner = new Scanner(System.in);
+        String input = "";
         PizzaRepository pizzaRepository = PizzaRepository.getInstance();
 
         System.out.println("Informe o cliente:");
@@ -55,21 +61,18 @@ public class OrderMenuView {
 
         final Order order = new Order(customer, delivery);
 
-        System.out.println("CARDAPIO\n\n");
+        while(!input.equalsIgnoreCase("N")) {
+            System.out.print("CARDAPIO\n\n");
+            for(final Object pizza : pizzaRepository.getAll())
+                System.out.println(pizza);
 
-        for(final Object pizza : pizzaRepository.getAll())
-            System.out.println(pizza);
-
-        String input = "";
-
-        while(!input.equals("N")) {
-            System.out.println("Deseja adicionar pizza ao pedido? [S, N]");
+            System.out.print("Deseja adicionar pizza ao pedido? [S, N]: ");
             input = scanner.next();
 
-            if(!input.equals("S"))
+            if(!input.equalsIgnoreCase("S"))
                 continue;
 
-            System.out.println("ID da pizza: ");
+            System.out.print("ID da pizza: ");
             Pizza pizza = pizzaRepository.getByID(scanner.nextInt());
 
             if(pizza == null) {
@@ -80,65 +83,80 @@ public class OrderMenuView {
             System.out.print("Quantidade: ");
             int qtt = scanner.nextInt();
 
-            order.addItem(new OrderItem(pizza, qtt));
+            order.add(new OrderItem(pizza, qtt));
         }
+
+        System.out.print("Desconto em %: ");
+        order.setDiscount(scanner.nextDouble());
 
         System.out.println(order);
+        workDay.add(order);
     }
 
-    private static void searchPizza(PizzaRepository repository) {
+    private static void searchOrder(WorkDay workDay) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("ID: ");
         final int id = scanner.nextInt();
-        final Pizza pizza = repository.getByID(id);
+        final Order order = workDay.getByID(id);
 
-        if(pizza != null)
-            System.out.println(pizza);
+        if(order != null)
+            System.out.println(order);
         else
-            System.out.println("Pizza nao encontrada!");
+            System.out.println("Pedido nao encontrado!");
     }
 
-    private static void updatePizza(PizzaRepository repository) {
+    private static void updateOrder(WorkDay workDay) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("ID: ");
-        final int id = scanner.nextInt();
+        final int orderID = scanner.nextInt();
 
-        final Pizza pizza = repository.getByID(id);
+        final Order order = workDay.getByID(orderID);
 
-        if(pizza == null) {
-            System.out.println("Pizza nao encontrada!");
+        if(order == null) {
+            System.out.println("Pedido nao encontrado!");
             return;
         }
 
-        System.out.println(pizza);
-        System.out.print("\nNovo preco: ");
-        pizza.setPrice(scanner.nextDouble());
+        String input = "";
+        while (!input.equals("0")) {
+            for(final OrderItem item : order.getAll())
+                System.out.println(item);
 
-        System.out.print("\nNovo tamanho [P, M, G] (tamanho padrao - M): ");
-        pizza.setSize(switch (scanner.next().toUpperCase()) {
-            case "P" -> PizzaSize.SMALL;
-            case "G" -> PizzaSize.BIG;
-            default -> PizzaSize.MEDIUM;
-        });
+            System.out.println("Alterar qual item [0 para sair]: ");
+            input = scanner.next();
 
-        System.out.println("\n\n" + pizza);
+            if(input.equals("0"))
+                continue;
+
+            OrderItem item = order.getByID(Integer.parseInt(input));
+
+            if(item == null) {
+                System.out.println("Item nao encontrado");
+                continue;
+            }
+
+            System.out.println("Nova quantidade: ");
+            item.setQuantity(scanner.nextInt());
+        }
+
+        System.out.println("\n\n" + order);
     }
 
-    private static void removePizza(PizzaRepository repository) {
+    private static void removeOrder(WorkDay workDay) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("ID: ");
-        final Pizza pizza = repository.getByID(scanner.nextInt());
+        final Order order = workDay.getByID(scanner.nextInt());
 
-        if(pizza == null) {
-            System.out.println("Pizza nao encontrada!");
+        if(order == null) {
+            System.out.println("Pedido nao encontrado!");
             return;
         }
 
-        repository.remove(pizza);
-        System.out.println("Pizza removida com sucesso");
+        workDay.remove(order);
+        System.out.println("Pedido removido com sucesso");
     }
 
-    private static void listAll(Object[] items) {
+    private static void listAll(ArrayList<Order> items) {
         for(final Object item : items)
             System.out.println(item);
     }

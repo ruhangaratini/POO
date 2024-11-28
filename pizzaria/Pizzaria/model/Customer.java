@@ -12,7 +12,7 @@ public class Customer {
     public static Customer fromUserInput() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Nome: ");
+        System.out.print("Nome: ");
         return new Customer(scanner.next());
     }
 

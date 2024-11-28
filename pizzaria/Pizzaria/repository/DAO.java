@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 public class DAO<T extends Entity> {
     private final ArrayList<T> data;
+    private int lastID;
     
     public DAO() {
-        this.data = new ArrayList<T>();
+        this.data = new ArrayList<>();
+        this.lastID = 0;
     }
     
     public void add(T item) {
@@ -21,8 +23,8 @@ public class DAO<T extends Entity> {
         this.data.remove(item);
     }
     
-    public Object[] getAll() {
-        return this.data.toArray();
+    public ArrayList<T> getAll() {
+        return this.data;
     }
 
     public T getByID(int id) {
@@ -35,7 +37,7 @@ public class DAO<T extends Entity> {
     }
     
     public int generateID() {
-        return this.data.size() + 1;
+        return ++this.lastID;
     }
     
 }
