@@ -11,7 +11,7 @@ public class Border {
     }
 
     public Part getFitting() {
-        return  this.fitting;
+        return this.fitting;
     }
 
     public void setFitting(Part part) {
@@ -27,6 +27,9 @@ public class Border {
     }
 
     public boolean checkFitting(Border reference) {
-        return this.left != reference.getLeft() && this.right != reference.getRight();
+        return
+            this.fitting == null &&
+            this.left != reference.getRight() && this.right != reference.getLeft() &&
+            this.left != this.right;
     }
 }
