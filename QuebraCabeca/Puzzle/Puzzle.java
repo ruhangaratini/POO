@@ -73,16 +73,16 @@ public class Puzzle {
             }
 
             if(!wasFitted) {
-                System.out.println("Não foi possível encaixar a peça " + i);
+                System.out.println("Não foi possível encaixar a peça " + i + 1);
                 puzzleSolved = false;
                 break;
             }
         }
 
-        if(puzzleSolved) {
-            System.out.println("Quebra-cabeça resolvido com sucesso");
-        }
+        if(!puzzleSolved)
+            return;
 
+        System.out.println("Quebra-cabeça resolvido com sucesso");
     }
 
 }

@@ -13,6 +13,22 @@ public class Part {
         this.left = left;
     }
 
+    public Border getTop() {
+        return top;
+    }
+
+    public Border getRight() {
+        return right;
+    }
+
+    public Border getBottom() {
+        return bottom;
+    }
+
+    public Border getLeft() {
+        return left;
+    }
+
     public boolean fitting(Part part) {
         if(this.top.checkFitting(part.bottom)) {
             this.top.setFitting(part);
