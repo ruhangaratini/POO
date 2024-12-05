@@ -44,7 +44,8 @@ public class DoctorView {
                     break;
             }
 
-            InterfaceUtil.pressEnterToContinue();
+            if(!input.equals("6"))
+                InterfaceUtil.pressEnterToContinue();
         }
     }
 
@@ -52,28 +53,28 @@ public class DoctorView {
         final Scanner scanner = new Scanner(System.in);
 
         System.out.print("Nome: ");
-        final String name = scanner.next();
+        final String name = scanner.nextLine();
 
         System.out.print("Identidade: ");
-        final String identity = scanner.next();
+        final String identity = scanner.nextLine();
 
         System.out.print("CPF: ");
-        final String cpf = scanner.next();
+        final String cpf = scanner.nextLine();
 
         System.out.print("Endereco: ");
-        final String address = scanner.next();
+        final String address = scanner.nextLine();
 
         System.out.print("Telefone: ");
-        final String phone = scanner.next();
+        final String phone = scanner.nextLine();
 
         System.out.print("CRM: ");
-        final String crm = scanner.next();
+        final String crm = scanner.nextLine();
 
         System.out.print("Especialidade: ");
-        final String speciality = scanner.next();
+        final String speciality = scanner.nextLine();
 
         System.out.print("CTPS: ");
-        final String ctps = scanner.next();
+        final String ctps = scanner.nextLine();
 
         return new Doctor(name, identity, cpf, address, phone, crm, speciality, ctps);
     }
@@ -98,16 +99,63 @@ public class DoctorView {
     public static void updateDoctor() {
         final Scanner scanner = new Scanner(System.in);
         final DoctorRepository repository = DoctorRepository.getInstance();
+
+        System.out.println("ID: ");
+        Doctor doctor = repository.getByID(scanner.nextInt());
+
+        if(doctor == null) {
+            System.out.println("Medico nao encontrado!");
+            return;
+        }
+
+        System.out.print("Nome: ");
+        doctor.setName(scanner.nextLine());
+
+        System.out.print("Identidade: ");
+        doctor.setIdentity(scanner.nextLine());
+
+        System.out.print("CPF: ");
+        doctor.setCpf(scanner.nextLine());
+
+        System.out.print("Endereco: ");
+        doctor.setAddress(scanner.nextLine());
+
+        System.out.print("Telefone: ");
+        doctor.setPhone(scanner.nextLine());
+
+        System.out.print("CRM: ");
+        doctor.setCrm(scanner.nextLine());
+
+        System.out.print("Especialidade: ");
+        doctor.setSpeciality(scanner.nextLine());
+
+        System.out.print("CTPS: ");
+        doctor.setCtps(scanner.nextLine());
     }
 
     public static void removeDoctor() {
         final Scanner scanner = new Scanner(System.in);
         final DoctorRepository repository = DoctorRepository.getInstance();
+
+        System.out.println("ID: ");
+        Doctor doctor = repository.getByID(scanner.nextInt());
+
+        if(doctor == null) {
+            System.out.println("Medico nao encontrado!");
+            return;
+        }
+
+        if(!repository.remove(doctor)) {
+            System.out.println("Medico nao encontrado!");
+            return;
+        }
+
+        System.out.println("Medico removido com sucesso!");
     }
 
     public static void listAll() {
         for(final Doctor doctor : DoctorRepository.getInstance().getAll())
-            System.out.println(doctor);
+            System.out.println(doctor + "\n\n");
     }
 
 }

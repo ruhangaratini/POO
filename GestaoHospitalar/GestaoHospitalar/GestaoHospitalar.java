@@ -1,5 +1,9 @@
 package GestaoHospitalar;
 
+import GestaoHospitalar.util.InterfaceUtil;
+import GestaoHospitalar.view.DoctorView;
+import GestaoHospitalar.view.PatientView;
+
 import java.util.Scanner;
 
 public class GestaoHospitalar {
@@ -17,7 +21,21 @@ public class GestaoHospitalar {
             System.out.println("----------------\n");
 
             System.out.print("Opcao: ");
-            input = scanner.next();
+            input = scanner.nextLine();
+
+            switch (input) {
+                case "1":
+                    DoctorView.showMenu();
+                    break;
+                case "2":
+                    PatientView.showMenu();
+                    break;
+                case "3":
+                    break;
+            }
+
+            if(!input.equals("4"))
+                InterfaceUtil.pressEnterToContinue();
         }
     }
 }

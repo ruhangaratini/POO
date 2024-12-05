@@ -18,8 +18,8 @@ public class DAO<T extends Entity> {
         this.data.add(item);
     }
 
-    public void remove(T item) {
-        this.data.remove(item);
+    public boolean remove(T item) {
+        return this.data.remove(item);
     }
 
     public ArrayList<T> getAll() {

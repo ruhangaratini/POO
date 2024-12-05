@@ -12,7 +12,7 @@ public class InterfaceUtil {
     public static void pressEnterToContinue() {
         final Scanner scanner = new Scanner(System.in);
         System.out.println("\nPressione Enter para continuar....");
-        scanner.next();
+        scanner.nextLine();
         clear();
     }
 
