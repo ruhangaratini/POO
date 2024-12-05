@@ -5,8 +5,6 @@ public class Doctor extends Person implements Entity {
     private String crm;
     private String speciality;
     private String ctps;
-    private String login;
-    private String password;
 
     public Doctor(String name, String identity, String cpf, String address, String phone, String crm, String speciality, String ctps) {
         super(name, identity, cpf, address, phone);
@@ -37,10 +35,6 @@ public class Doctor extends Person implements Entity {
 
     public void setCtps(String ctps) {
         this.ctps = ctps;
-    }
-
-    public boolean login(String login, String password) {
-        return this.login.equals(login) && this.password.equals(password);
     }
 
     @Override

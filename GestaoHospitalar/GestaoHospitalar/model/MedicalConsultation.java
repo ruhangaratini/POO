@@ -1,6 +1,7 @@
 package GestaoHospitalar.model;
 
-public class MedicalConsultation {
+public class MedicalConsultation implements Entity {
+    private int id;
     private Patient patient;
     private Doctor doctor;
     private MedicalConsultationStatus status;
@@ -23,4 +24,13 @@ public class MedicalConsultation {
         return this.status;
     }
 
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    @Override
+    public void setID(int id) {
+        this.id = id;
+    }
 }

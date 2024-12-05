@@ -6,5 +6,17 @@ public enum MedicalConsultationStatus {
     PreSurgeryPreparation,
     Surgery,
     PostSurgery,
-    ClinicalDischarge
+    ClinicalDischarge;
+
+    @Override
+    public String toString() {
+        return switch (this) {
+            case Entry -> "Entrada";
+            case GeneralClinicalTreatment -> "Tratamento Clinico Geral";
+            case PreSurgeryPreparation -> "Preparacao Pre Cirurgia";
+            case Surgery -> "Cirurgia";
+            case PostSurgery -> "Pos Cirurgia";
+            case ClinicalDischarge -> "Alta Clinica";
+        };
+    }
 }
