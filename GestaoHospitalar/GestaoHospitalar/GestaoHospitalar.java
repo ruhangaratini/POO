@@ -38,4 +38,5 @@ public class GestaoHospitalar {
                 InterfaceUtil.pressEnterToContinue();
         }
     }
+
 }

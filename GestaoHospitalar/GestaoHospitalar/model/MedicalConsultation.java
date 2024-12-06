@@ -24,6 +24,14 @@ public class MedicalConsultation implements Entity {
         return this.status;
     }
 
+    public boolean setStatus(Doctor doctor, MedicalConsultationStatus status) {
+        if(this.doctor != doctor)
+            return false;
+
+        this.status = status;
+        return true;
+    }
+
     @Override
     public int getID() {
         return this.id;
