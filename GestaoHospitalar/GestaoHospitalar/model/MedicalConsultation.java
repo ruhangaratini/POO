@@ -41,4 +41,9 @@ public class MedicalConsultation implements Entity {
     public void setID(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Paciente:\n" + this.patient + "\n\nMedico:\n" + this.doctor + "\n\nStatus:" + this.status;
+    }
 }

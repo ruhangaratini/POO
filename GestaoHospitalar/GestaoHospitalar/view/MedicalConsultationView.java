@@ -22,7 +22,8 @@ public class MedicalConsultationView {
             System.out.println("2. Buscar");
             System.out.println("3. Consultar (apenas Medicos)");
             System.out.println("4. Listar");
-            System.out.println("5. Sair");
+            System.out.println("5. Remover");
+            System.out.println("6. Sair");
             System.out.println("----------------\n");
 
             System.out.print("Opcao: ");
@@ -40,6 +41,9 @@ public class MedicalConsultationView {
                     break;
                 case "4":
                     listAll();
+                    break;
+                case "5":
+                    removeMedicalConsultation();
                     break;
             }
         }
@@ -108,9 +112,10 @@ public class MedicalConsultationView {
             return;
         }
 
-        System.out.println("\nNovo status:\n");
+        System.out.println("Novo status:");
         if(!consultation.setStatus(doctor, MedicalConsultationStatus.fromString())) {
             System.out.println("Apenas o medico responsavel pode alterar a consulta");
+            return;
         }
 
         System.out.println("Status atualizado com sucesso!");

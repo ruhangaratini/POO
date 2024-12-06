@@ -2,6 +2,7 @@ package GestaoHospitalar;
 
 import GestaoHospitalar.util.InterfaceUtil;
 import GestaoHospitalar.view.DoctorView;
+import GestaoHospitalar.view.MedicalConsultationView;
 import GestaoHospitalar.view.PatientView;
 
 import java.util.Scanner;
@@ -31,6 +32,7 @@ public class GestaoHospitalar {
                     PatientView.showMenu();
                     break;
                 case "3":
+                    MedicalConsultationView.showMenu();
                     break;
             }
 
