@@ -108,6 +108,9 @@ public class DoctorView {
             return;
         }
 
+        if(scanner.hasNextLine())
+            scanner.nextLine();
+
         System.out.print("Nome: ");
         doctor.setName(scanner.nextLine());
 

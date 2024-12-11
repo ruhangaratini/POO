@@ -63,7 +63,7 @@ public class MedicalConsultationView {
             return;
         }
 
-        System.out.print("ID Medico: ");
+        System.out.print("ID Paciente: ");
         final Patient patient = patientRepository.getByID(scanner.nextInt());
 
         if(patient == null) {

@@ -44,6 +44,7 @@ public class MedicalConsultation implements Entity {
 
     @Override
     public String toString() {
-        return "Paciente:\n" + this.patient + "\n\nMedico:\n" + this.doctor + "\n\nStatus:" + this.status;
+        return "Paciente: " + this.patient.getName() + " | CPF: " + this.patient.getCpf() +
+                "\nMedico: " + this.doctor.getName() + " | CRM: " + this.doctor.getCrm() + "\nStatus: " + this.status;
     }
 }

@@ -105,6 +105,9 @@ public class PatientView {
             return;
         }
 
+        if(scanner.hasNextLine())
+            scanner.nextLine();
+
         System.out.print("Nome: ");
         patient.setName(scanner.nextLine());
 
