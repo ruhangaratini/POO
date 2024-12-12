@@ -45,6 +45,15 @@ public class Main {
         Thread runnableThread = new Thread(runnable);
 
         runnableThread.start();
+
+        Runnable lambda = () -> {
+            while (true) {
+                System.out.println("Lambda");
+            }
+        };
+
+        Thread threadLambda = new Thread(lambda);
+        threadLambda.start();
     }
 
 }
